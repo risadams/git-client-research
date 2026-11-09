@@ -1,0 +1,545 @@
+/* ==========================================================================
+   Ris Ink — an Obsidian theme
+   Based on the vs-ris VS Code themes (Ink Paper light / Ink Parchment dark)
+   and the risadams.com brand: watercolor / ink-on-paper. Warm paper surfaces,
+   saturated ink accents, a well-kept field notebook.
+   https://github.com/risadams/vs-ris
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Fonts
+
+   The brand stacks below fall back gracefully if the fonts aren't installed.
+   For the full effect install locally: Fraunces (variable), Caveat,
+   JetBrains Mono. (No remote font loading — Obsidian works offline.)
+   -------------------------------------------------------------------------- */
+body {
+  --font-text-theme: "Fraunces", "Crimson Pro", Georgia, serif;
+  --font-interface-theme: "Fraunces", "Crimson Pro", Georgia, serif;
+  --font-monospace-theme: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+
+  /* rhythm */
+  --line-height-normal: 1.65;
+  --file-line-width: 42rem; /* ~68ch reading measure */
+
+  /* headings — Fraunces, tight tracking; sizes stay near Obsidian defaults */
+  --h1-weight: 500;
+  --h2-weight: 500;
+  --h3-weight: 550;
+  --h4-weight: 600;
+  --h5-weight: 600;
+  --h6-weight: 600;
+  --inline-title-weight: 500;
+
+  --bold-weight: 600;
+
+  /* blockquote: italic serif with a rose bar, no background */
+  --blockquote-border-thickness: 2px;
+  --blockquote-background-color: transparent;
+
+  /* tags: mono pill over a low-opacity accent blob */
+  --tag-border-width: 0;
+  --tag-radius: 1em;
+  --tag-weight: 500;
+  --tag-decoration: none;
+  --tag-decoration-hover: none;
+
+  --checklist-done-decoration: line-through;
+  --code-radius: 4px;
+  --embed-border-left: 2px solid var(--ris-teal);
+}
+
+/* --------------------------------------------------------------------------
+   2. Light — Ink Paper
+   -------------------------------------------------------------------------- */
+.theme-light {
+  /* Obsidian accent (rose #CB0162) */
+  --accent-h: 331;
+  --accent-s: 99%;
+  --accent-l: 40%;
+
+  /* palette handles used by shared rules below */
+  --ris-rose: #cb0162;
+  --ris-rose-deep: #8f0044;
+  --ris-teal: #1a5b6e;
+  --ris-plum: #6b3a6e;
+  --ris-sepia: #8a5a3c;
+  --ris-ochre: #8a5c00;
+
+  /* paper surfaces */
+  --background-primary: #faf6ef;
+  --background-primary-alt: #f4ecdd;
+  --background-secondary: #f4ecdd;
+  --background-secondary-alt: #ede3cf;
+  --background-modifier-border: #d8c9ad;
+  --background-modifier-border-hover: #c9b795;
+  --background-modifier-border-focus: #cb0162;
+  --background-modifier-hover: rgba(26, 22, 20, 0.05);
+  --background-modifier-active-hover: rgba(203, 1, 98, 0.12);
+  --background-modifier-form-field: #faf6ef;
+  --background-modifier-box-shadow: rgba(26, 22, 20, 0.15);
+
+  --divider-color: #d8c9ad;
+  --titlebar-background: #f4ecdd;
+  --titlebar-background-focused: #f4ecdd;
+  --ribbon-background: #f4ecdd;
+
+  /* ink text (AA-safe on paper) */
+  --text-normal: #1a1614;
+  --text-muted: #6b625a;
+  --text-faint: #776e65;
+  --text-on-accent: #faf6ef;
+  --text-accent: #cb0162;
+  --text-accent-hover: #8f0044;
+  --text-selection: rgba(203, 1, 98, 0.22);
+  --text-highlight-bg: rgba(196, 138, 30, 0.28);
+  --caret-color: #cb0162;
+
+  --interactive-normal: #f4ecdd;
+  --interactive-hover: #ede3cf;
+  --interactive-accent: #cb0162;
+  --interactive-accent-hover: #8f0044;
+
+  /* headings: rose voice, plum/sepia chorus */
+  --h1-color: #cb0162;
+  --h2-color: #cb0162;
+  --h3-color: #cb0162;
+  --h4-color: #6b3a6e;
+  --h5-color: #8a5a3c;
+  --h6-color: #6b625a;
+  --inline-title-color: #cb0162;
+
+  /* links — rose is the voice */
+  --link-color: #cb0162;
+  --link-color-hover: #8f0044;
+  --link-external-color: #cb0162;
+  --link-external-color-hover: #8f0044;
+  --link-unresolved-color: #8a5a3c;
+  --link-unresolved-opacity: 0.85;
+
+  --blockquote-border-color: #cb0162;
+  --hr-color: #d8c9ad;
+  --list-marker-color: #8a5a3c;
+  --collapse-icon-color: #776e65;
+  --checkbox-color: #cb0162;
+  --checkbox-color-hover: #8f0044;
+  --checkbox-border-color: #9a9088;
+  --checkbox-marker-color: #faf6ef;
+  --checklist-done-color: #6b625a;
+
+  /* tags: deep rose on a rose wash */
+  --tag-color: #8f0044;
+  --tag-color-hover: #8f0044;
+  --tag-background: rgba(203, 1, 98, 0.1);
+  --tag-background-hover: rgba(203, 1, 98, 0.2);
+
+  /* code — the signature move: parchment-dark blocks on light paper */
+  --code-background: #2a2220;
+  --code-normal: #f0e6d2;
+  --code-comment: #a49a8e;
+  --code-keyword: #e8659a;
+  --code-function: #b183b5;
+  --code-operator: #b183b5;
+  --code-property: #5ba3b8;
+  --code-string: #5ba3b8;
+  --code-value: #c48a1e;
+  --code-important: #e8659a;
+  --code-punctuation: #c8b89a;
+  --code-tag: #e8659a;
+
+  /* inline code (overridden from the block palette below) */
+  --ris-inline-code-color: #6b3a6e;
+  --ris-inline-code-bg: #f4ecdd;
+
+  --table-border-color: #d8c9ad;
+  --table-header-background: transparent;
+  --table-header-color: #1a1614;
+  --table-row-background-hover: rgba(26, 22, 20, 0.04);
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(26, 22, 20, 0.15);
+  --scrollbar-active-thumb-bg: rgba(203, 1, 98, 0.5);
+
+  /* nav / file explorer — rose-tinted selection like the VS Code list */
+  --nav-item-color: #3a322c;
+  --nav-item-color-hover: #1a1614;
+  --nav-item-color-active: #1a1614;
+  --nav-item-background-active: rgba(203, 1, 98, 0.12);
+  --nav-item-background-hover: rgba(26, 22, 20, 0.05);
+
+  /* graph — teal notes, rose tags, sepia attachments */
+  --graph-text: #3a322c;
+  --graph-line: #d8c9ad;
+  --graph-node: #1a5b6e;
+  --graph-node-focused: #cb0162;
+  --graph-node-tag: #cb0162;
+  --graph-node-attachment: #8a5a3c;
+  --graph-node-unresolved: #b9ad97;
+
+  /* callouts — R,G,B triplets from the ink palette */
+  --callout-default: 26, 91, 110;
+  --callout-info: 26, 91, 110;
+  --callout-todo: 26, 91, 110;
+  --callout-summary: 26, 91, 110;
+  --callout-tip: 26, 91, 110;
+  --callout-important: 203, 1, 98;
+  --callout-success: 77, 124, 67;
+  --callout-question: 138, 92, 0;
+  --callout-warning: 138, 92, 0;
+  --callout-fail: 143, 0, 68;
+  --callout-error: 143, 0, 68;
+  --callout-bug: 143, 0, 68;
+  --callout-example: 107, 58, 110;
+  --callout-quote: 107, 98, 90;
+
+  /* base color roles (also feed graph groups, canvas, etc.) */
+  --color-red: #8f0044;
+  --color-red-rgb: 143, 0, 68;
+  --color-orange: #8a5a3c;
+  --color-orange-rgb: 138, 90, 60;
+  --color-yellow: #8a5c00;
+  --color-yellow-rgb: 138, 92, 0;
+  --color-green: #4d7c43;
+  --color-green-rgb: 77, 124, 67;
+  --color-cyan: #1a5b6e;
+  --color-cyan-rgb: 26, 91, 110;
+  --color-blue: #1a5b6e;
+  --color-blue-rgb: 26, 91, 110;
+  --color-purple: #6b3a6e;
+  --color-purple-rgb: 107, 58, 110;
+  --color-pink: #cb0162;
+  --color-pink-rgb: 203, 1, 98;
+}
+
+/* --------------------------------------------------------------------------
+   3. Dark — Ink Parchment
+   -------------------------------------------------------------------------- */
+.theme-dark {
+  /* Obsidian accent (soft rose #e24a8a — full rose fails on dark paper) */
+  --accent-h: 335;
+  --accent-s: 72%;
+  --accent-l: 59%;
+
+  --ris-rose: #e24a8a;
+  --ris-rose-deep: #ef7fac;
+  --ris-teal: #5ba3b8;
+  --ris-plum: #b183b5;
+  --ris-sepia: #b8875f;
+  --ris-ochre: #d9a13f;
+
+  /* inverted paper */
+  --background-primary: #1a1614;
+  --background-primary-alt: #241c19;
+  --background-secondary: #241c19;
+  --background-secondary-alt: #14100e;
+  --background-modifier-border: #3a2d26;
+  --background-modifier-border-hover: #4d3c32;
+  --background-modifier-border-focus: #e24a8a;
+  --background-modifier-hover: rgba(244, 236, 221, 0.05);
+  --background-modifier-active-hover: rgba(226, 74, 138, 0.15);
+  --background-modifier-form-field: #241c19;
+  --background-modifier-box-shadow: rgba(0, 0, 0, 0.35);
+
+  --divider-color: #3a2d26;
+  --titlebar-background: #14100e;
+  --titlebar-background-focused: #14100e;
+  --ribbon-background: #14100e;
+
+  /* parchment ink */
+  --text-normal: #f0e6d2;
+  --text-muted: #a89e8f;
+  --text-faint: #948b7d;
+  --text-on-accent: #1a1614;
+  --text-accent: #e24a8a;
+  --text-accent-hover: #ef7fac;
+  --text-selection: rgba(226, 74, 138, 0.28);
+  --text-highlight-bg: rgba(196, 138, 30, 0.32);
+  --caret-color: #e24a8a;
+
+  --interactive-normal: #2a211c;
+  --interactive-hover: #3a2d26;
+  --interactive-accent: #e24a8a;
+  --interactive-accent-hover: #ef7fac;
+
+  --h1-color: #e8659a;
+  --h2-color: #e8659a;
+  --h3-color: #e8659a;
+  --h4-color: #b183b5;
+  --h5-color: #b8875f;
+  --h6-color: #a89e8f;
+  --inline-title-color: #e8659a;
+
+  --link-color: #e24a8a;
+  --link-color-hover: #ef7fac;
+  --link-external-color: #e24a8a;
+  --link-external-color-hover: #ef7fac;
+  --link-unresolved-color: #b8875f;
+  --link-unresolved-opacity: 0.85;
+
+  --blockquote-border-color: #e24a8a;
+  --hr-color: #3a2d26;
+  --list-marker-color: #b8875f;
+  --collapse-icon-color: #948b7d;
+  --checkbox-color: #e24a8a;
+  --checkbox-color-hover: #ef7fac;
+  --checkbox-border-color: #6e665b;
+  --checkbox-marker-color: #1a1614;
+  --checklist-done-color: #a89e8f;
+
+  --tag-color: #ef7fac;
+  --tag-color-hover: #ef7fac;
+  --tag-background: rgba(226, 74, 138, 0.12);
+  --tag-background-hover: rgba(226, 74, 138, 0.22);
+
+  /* code blocks: deeper parchment-dark */
+  --code-background: #1a1210;
+  --code-normal: #f0e6d2;
+  --code-comment: #a49a8e;
+  --code-keyword: #e8659a;
+  --code-function: #b183b5;
+  --code-operator: #b183b5;
+  --code-property: #5ba3b8;
+  --code-string: #5ba3b8;
+  --code-value: #c48a1e;
+  --code-important: #e8659a;
+  --code-punctuation: #c8b89a;
+  --code-tag: #e8659a;
+
+  --ris-inline-code-color: #b183b5;
+  --ris-inline-code-bg: #241c19;
+
+  --table-border-color: #3a2d26;
+  --table-header-background: transparent;
+  --table-header-color: #f4ecdd;
+  --table-row-background-hover: rgba(244, 236, 221, 0.04);
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(244, 236, 221, 0.12);
+  --scrollbar-active-thumb-bg: rgba(226, 74, 138, 0.5);
+
+  --nav-item-color: #ddd1bb;
+  --nav-item-color-hover: #f4ecdd;
+  --nav-item-color-active: #f4ecdd;
+  --nav-item-background-active: rgba(226, 74, 138, 0.15);
+  --nav-item-background-hover: rgba(244, 236, 221, 0.05);
+
+  --graph-text: #ddd1bb;
+  --graph-line: #3a2d26;
+  --graph-node: #5ba3b8;
+  --graph-node-focused: #e24a8a;
+  --graph-node-tag: #e24a8a;
+  --graph-node-attachment: #b8875f;
+  --graph-node-unresolved: #6e665b;
+
+  --callout-default: 91, 163, 184;
+  --callout-info: 91, 163, 184;
+  --callout-todo: 91, 163, 184;
+  --callout-summary: 91, 163, 184;
+  --callout-tip: 91, 163, 184;
+  --callout-important: 226, 74, 138;
+  --callout-success: 127, 174, 106;
+  --callout-question: 217, 161, 63;
+  --callout-warning: 217, 161, 63;
+  --callout-fail: 232, 101, 154;
+  --callout-error: 232, 101, 154;
+  --callout-bug: 232, 101, 154;
+  --callout-example: 177, 131, 181;
+  --callout-quote: 168, 158, 143;
+
+  --color-red: #e8659a;
+  --color-red-rgb: 232, 101, 154;
+  --color-orange: #b8875f;
+  --color-orange-rgb: 184, 135, 95;
+  --color-yellow: #d9a13f;
+  --color-yellow-rgb: 217, 161, 63;
+  --color-green: #7fae6a;
+  --color-green-rgb: 127, 174, 106;
+  --color-cyan: #72b4c7;
+  --color-cyan-rgb: 114, 180, 199;
+  --color-blue: #5ba3b8;
+  --color-blue-rgb: 91, 163, 184;
+  --color-purple: #b183b5;
+  --color-purple-rgb: 177, 131, 181;
+  --color-pink: #e24a8a;
+  --color-pink-rgb: 226, 74, 138;
+}
+
+/* --------------------------------------------------------------------------
+   4. Typography details
+   -------------------------------------------------------------------------- */
+
+/* Fraunces display character on big headings (no-ops without the variable font) */
+.inline-title,
+.markdown-rendered h1,
+.markdown-rendered h2,
+.HyperMD-header-1,
+.HyperMD-header-2 {
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+}
+
+.markdown-rendered h3,
+.markdown-rendered h4,
+.HyperMD-header-3,
+.HyperMD-header-4 {
+  letter-spacing: -0.01em;
+}
+
+/* caret in rose */
+.cm-content {
+  caret-color: var(--caret-color);
+}
+
+/* --------------------------------------------------------------------------
+   5. Code
+   -------------------------------------------------------------------------- */
+
+/* Inline code stays warm-paper + plum; the dark palette is for blocks only */
+.markdown-rendered :not(pre) > code,
+.cm-s-obsidian span.cm-inline-code {
+  color: var(--ris-inline-code-color);
+  background-color: var(--ris-inline-code-bg);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+
+/* Reading-view code blocks get a little air */
+.markdown-rendered pre {
+  padding: 0.9em 1.1em;
+}
+
+/* Comments italic, matching the VS Code token style */
+.markdown-rendered pre .token.comment,
+.cm-s-obsidian .cm-comment {
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   6. Prose furniture
+   -------------------------------------------------------------------------- */
+
+/* Blockquote: italic serif with the rose bar, no box */
+.markdown-rendered blockquote,
+.markdown-source-view.mod-cm6 .HyperMD-quote {
+  font-style: italic;
+}
+
+/* Dashed hairlines for horizontal rules, per the brand */
+.markdown-rendered hr,
+.markdown-source-view hr {
+  border: none;
+  border-top: 1px dashed var(--hr-color);
+  background: none;
+  height: 0;
+}
+
+/* Links: painterly low-opacity underline that firms up on hover */
+.markdown-rendered a,
+.cm-s-obsidian .cm-link .cm-underline,
+.cm-s-obsidian .cm-hmd-internal-link .cm-underline {
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.markdown-rendered a:hover,
+.cm-s-obsidian .cm-link .cm-underline:hover,
+.cm-s-obsidian .cm-hmd-internal-link .cm-underline:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+/* Unresolved links: dashed — a note not yet written */
+.cm-s-obsidian .cm-hmd-internal-link.is-unresolved .cm-underline,
+.markdown-rendered a.internal-link.is-unresolved {
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1px;
+}
+
+/* Tags as mono pills */
+.tag,
+.cm-s-obsidian .cm-hashtag {
+  font-family: var(--font-monospace);
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+}
+
+/* Table: solid header rule, dashed row hairlines */
+.markdown-rendered thead tr,
+.markdown-rendered th {
+  border-bottom: 1.5px solid var(--table-border-color);
+}
+
+.markdown-rendered td {
+  border-bottom: 1px dashed var(--table-border-color);
+}
+
+/* --------------------------------------------------------------------------
+   7. Callouts — margin notes: dashed accent bar, handwritten title
+   -------------------------------------------------------------------------- */
+.callout {
+  background-color: rgba(var(--callout-color), 0.07);
+  border-left: 2px dashed rgb(var(--callout-color));
+  border-radius: 2px;
+}
+
+.callout-title-inner {
+  font-family: var(--font-hand);
+  font-size: 1.3em;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* --------------------------------------------------------------------------
+   8. Chrome
+   -------------------------------------------------------------------------- */
+
+/* Properties / metadata labels in small mono, like the site's meta rows */
+.metadata-property-key-input,
+.metadata-property-key {
+  font-family: var(--font-monospace);
+  font-size: 0.82em;
+  letter-spacing: 0.05em;
+}
+
+/* Status bar + tab headers pick up the warm secondary surface */
+.status-bar {
+  background-color: var(--background-secondary);
+  border-top: 1px solid var(--divider-color);
+}
+
+/* Visible keyboard focus on controls, brand accessibility baseline */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.clickable-icon:focus-visible {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Paper grain (signature motif — delete this block to disable)
+
+   A fixed, full-viewport fractal-noise overlay at very low opacity. It's what
+   makes the background feel like paper instead of a flat hex value.
+   -------------------------------------------------------------------------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+
+body.theme-dark::before {
+  opacity: 0.09;
+  mix-blend-mode: screen;
+}
